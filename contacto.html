@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — Estudio Jurídico</title>
+<meta name="description" content="Solicite asesoría jurídica con Estudio Jurídico: WhatsApp, correo, teléfono o formulario de contacto.">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header id="site-header" class="site-header"></header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Contacto</span>
+      <h1>Solicite asesoría jurídica</h1>
+      <p>Escríbanos por WhatsApp, correo o el formulario. Si no está seguro del área jurídica de su caso, también podemos ayudarle a identificarla.</p>
+    </div>
+  </section>
+
+  <section class="section-blanco">
+    <div class="container">
+      <div class="contacto-grid">
+
+        <div>
+          <h2>Datos de contacto</h2>
+          <hr class="rule">
+          <ul class="contacto-directo-lista" id="contacto-directo-lista"></ul>
+
+          <h3>Sede principal</h3>
+          <p id="contacto-direccion"></p>
+        </div>
+
+        <div>
+          <h2>Formulario de contacto</h2>
+          <hr class="rule">
+
+          <div class="aviso-horario">
+            <span id="aviso-horario-texto"></span>
+          </div>
+
+          <form id="form-contacto" novalidate>
+
+            <div class="form-campo">
+              <label for="campo-nombre">Nombre completo</label>
+              <input type="text" id="campo-nombre" name="nombre" required autocomplete="name">
+              <span class="form-error">Por favor escriba su nombre.</span>
+            </div>
+
+            <div class="form-campo">
+              <label for="campo-email">Correo electrónico</label>
+              <input type="email" id="campo-email" name="email" required autocomplete="email">
+              <span class="form-error">Escriba un correo electrónico válido.</span>
+            </div>
+
+            <div class="form-campo">
+              <label for="campo-telefono">Teléfono (con indicativo de país)</label>
+              <input type="tel" id="campo-telefono" name="telefono" placeholder="Ej. +57 300 1234567" required autocomplete="tel">
+              <span class="form-error">Escriba un número de teléfono válido, con indicativo de país.</span>
+            </div>
+
+            <div class="form-campo">
+              <label for="campo-ciudad">Ciudad o país</label>
+              <input type="text" id="campo-ciudad" name="ciudad" required autocomplete="address-level2">
+              <span class="form-error">Indique su ciudad o país.</span>
+            </div>
+
+            <div class="form-campo">
+              <label for="campo-area">Área jurídica</label>
+              <select id="campo-area" name="area" required>
+                <option value="" disabled selected>Seleccione una opción</option>
+              </select>
+              <span class="form-error">Seleccione un área o "No estoy seguro del área jurídica".</span>
+            </div>
+
+            <div class="form-campo">
+              <label for="campo-descripcion">Descripción breve del asunto</label>
+              <textarea id="campo-descripcion" name="descripcion" required></textarea>
+              <span class="form-error">Cuéntenos brevemente su situación.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primario btn-block">Enviar solicitud</button>
+
+            <div class="aviso-legal mt-md">
+              Enviar este formulario no crea una relación abogado-cliente ni implica la aceptación del caso por parte de Estudio Jurídico.
+            </div>
+
+            <div class="form-mensaje" id="form-mensaje"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer" class="site-footer"></footer>
+<div id="whatsapp-flotante"></div>
+
+<script src="js/data/site.js"></script>
+<script src="js/data/areas.js"></script>
+<script src="js/data/equipo.js"></script>
+<script src="js/data/contacto.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("contacto-direccion").innerHTML = CONTACTO.direccion.lineas.map(escapeHtml).join("<br>");
+
+    const lista = document.getElementById("contacto-directo-lista");
+    let html = "";
+
+    html += '<li class="contacto-directo-item"><span class="label">WhatsApp</span>' +
+      renderWhatsappBoton("", "Escribir por WhatsApp") + "</li>";
+
+    CONTACTO.correos.forEach(function (c) {
+      html += '<li class="contacto-directo-item"><span class="label">Correo — ' + escapeHtml(c.nombre) + '</span>' +
+        '<a href="mailto:' + escapeHtml(c.correo) + '">' + escapeHtml(c.correo) + "</a></li>";
+    });
+
+    CONTACTO.telefonosPBX.forEach(function (t, i) {
+      html += '<li class="contacto-directo-item"><span class="label">Teléfono PBX ' + (i + 1) + '</span>' +
+        '<a href="tel:' + t.replace(/[^+\d]/g, "") + '">' + escapeHtml(t) + "</a></li>";
+    });
+
+    lista.innerHTML = html;
+  });
+</script>
+</body>
+</html>
