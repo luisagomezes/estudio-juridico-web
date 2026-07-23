@@ -288,9 +288,24 @@ section {
 /* Hero */
 
 .hero {
+  position: relative;
   background: var(--navy);
   color: var(--marfil);
   padding: var(--space-xl) 0;
+  overflow: hidden;
+}
+
+.hero-imagen-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
+
+.hero .container {
+  position: relative;
 }
 
 .hero .eyebrow { color: var(--ocre); }
