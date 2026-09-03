@@ -19,16 +19,16 @@ const CONTACTO = {
 
   // Correos ya confirmados para contacto directo con cada abogado.
   correos: [
+    { nombre: "Servicio legal", correo: "serviciolegal.estudiojuridico@gmail.com" },
     { nombre: "Dr. José Fernando Gómez Posada", correo: "abogadogomez@gmail.com" },
     { nombre: "Dr. Fabio Hernán Forero López", correo: "fabiohforero@hotmail.com" }
   ],
 
-  // [INFORMACIÓN PENDIENTE] — número en formato internacional sin signos,
-  // ej. "573001234567". Mientras sea null, el botón de WhatsApp queda oculto.
-  whatsappNumero: null,
+  // Número en formato internacional sin signos (+57 350 294 6928).
+  whatsappNumero: "573502946928",
 
-  // [INFORMACIÓN PENDIENTE] — ej. "Lunes a viernes, 8:00 a.m. a 5:00 p.m."
-  horarioAtencion: null,
+  // Horario de atención (días por confirmar con Luisa).
+  horarioAtencion: "8:00 a.m. a 5:00 p.m.",
 
   // [INFORMACIÓN PENDIENTE] — endpoint del servicio de envío de formularios
   // (Formspree, Netlify Forms, etc.). Mientras sea null, el formulario se
